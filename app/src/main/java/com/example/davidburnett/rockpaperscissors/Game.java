@@ -15,30 +15,35 @@ public class Game {
             "Paper",
             "Scissors"
     };
+    String computerHand;
 
 
-    public Game(){}
-
-    private String getRandomHand(){
-        Random random = new Random();
-        int randomNumber = random.nextInt(3);
-        return hands[randomNumber];
+    public Game(){
+        computerHand = null;
     }
 
+    private void getRandomHand(){
+        Random random = new Random();
+        int randomNumber = random.nextInt(3);
+        computerHand = hands[randomNumber];
+    }
 
+    public String getComputerHand() {
+        return computerHand;
+    }
 
     public String playHand(String playerChoice) {
-        String computerChoice = getRandomHand();
-        if (playerChoice.equals(computerChoice)) {
-            return "The computer chose " + computerChoice + ", It's a draw!";
-        } else if (playerChoice.equals("Paper") && computerChoice.equals("Rock")) {
-            return "The computer chose " + computerChoice + ", You win!";
-        } else if (playerChoice.equals("Rock") && computerChoice.equals("Scissors")) {
-            return "The computer chose " + computerChoice + ", You win!";
-        } else if (playerChoice.equals("Scissors") && computerChoice.equals("Paper")) {
-            return "The computer chose " + computerChoice + ", You win!";
+        getRandomHand();
+        if (playerChoice.equals(computerHand)) {
+            return "It's a draw!";
+        } else if (playerChoice.equals("Paper") && computerHand.equals("Rock")) {
+            return "You win!";
+        } else if (playerChoice.equals("Rock") && computerHand.equals("Scissors")) {
+            return "You win!";
+        } else if (playerChoice.equals("Scissors") && computerHand.equals("Paper")) {
+            return "You win!";
         } else {
-            return "The computer chose " + computerChoice + ", The computer wins!";
+            return "The computer wins!";
         }
     }
 }
